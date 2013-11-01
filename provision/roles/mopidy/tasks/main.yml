@@ -1,0 +1,17 @@
+---
+ - lineinfile: dest=/etc/modules regexp="ipv6" line="ipv6"
+   notify: ipv6
+ - apt_key: url=http://apt.mopidy.com/mopidy.gpg state=present
+ - apt_repository: repo='deb http://apt.mopidy.com/ stable main contrib non-free' state=present
+ - apt_repository: repo='deb-src http://apt.mopidy.com/ stable main contrib non-free' state=present
+ - apt: name=mopidy update_cache=yes
+ - with_items:
+     - libspotify12
+     - libspotify-dev
+   apt: name=$item
+ - template: src=asound.conf.j2 dest=/etc/asound.conf
+ - file: dest=/home/pi/.config/mopidy/ state=directory owner=pi group=pi
+ - template: src=mopidy.conf.j2 dest=/home/pi/.config/mopidy/mopidy.conf
+   sudo: False
+
+

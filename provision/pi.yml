@@ -1,6 +1,15 @@
 ---
 - hosts: pimpd
   sudo: yes
+  vars_prompt:
+    - name: spotify_user
+      prompt: "spotify username"
+      private: no
+      default: wuuber
+    - name: spotify_password
+      prompt: "spotify password"
+      private: yes
   roles:
     - common
     - lights
+    - mopidy
