@@ -1,3 +1,7 @@
 ---
 - name: ipv6
   shell: modprobe ipv6
+- name: mopidy
+  shell: supervisorcrl update
+- name: mopidy
+  supervisorctl: name=mopidy state=started

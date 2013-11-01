@@ -13,5 +13,10 @@
  - file: dest=/home/pi/.config/mopidy/ state=directory owner=pi group=pi
  - template: src=mopidy.conf.j2 dest=/home/pi/.config/mopidy/mopidy.conf
    sudo: False
-
+ - with_items:
+     - pyspotify
+     - Mopidy-Spotify
+   pip: name=$item
+ - template: src=mopidy.conf.supervisor.j2 dest=/etc/supervisor/conf.d/mopidy.conf
+   notify: mopidy
 
