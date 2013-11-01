@@ -4,4 +4,4 @@
 - name: lights
   shell: supervisorcrl update
 - name: lights
-  supervisorctl: name=lights state=started config=/etc/supervisor/supervisord.conf
+  supervisorctl: name=lights state=started
