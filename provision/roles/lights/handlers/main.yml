@@ -2,6 +2,6 @@
 - name: lirc
   service: name=lirc state=restarted
 - name: lights
-  shell: supervisorcrl update
+  shell: supervisorctl update
 - name: lights
   supervisorctl: name=lights state=started
