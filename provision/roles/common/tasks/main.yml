@@ -1,0 +1,7 @@
+---
+- apt: update_cache=yes
+- with_items:
+    - python-dev
+    - python-pip
+  apt: name=$item
+- pip: name=pip state=latest

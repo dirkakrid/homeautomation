@@ -1,0 +1,6 @@
+---
+- hosts: pimpd
+  sudo: yes
+  roles:
+    - common
+    - lights

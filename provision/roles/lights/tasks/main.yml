@@ -1,0 +1,15 @@
+---
+- name: update apt cache
+  apt: update_cache=yes
+- name: install packages
+  with_items:
+    - lirc
+    - supervisor
+  apt: name=$item
+- name: modifi kernel modules
+  lineinfile: dest=/etc/modules regexp=^lirc_dev line=lirc_dev
+  notify: lirc
+- name: modifi kernel modules
+  lineinfile: dest=/etc/modules regexp=^lirc_rpi line="lirc_rpi gpio_in_pin=23"
+- template: src=lircd.conf.j2 dest=/etc/lirc/lircd.conf
+  notify: lirc
