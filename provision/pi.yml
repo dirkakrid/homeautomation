@@ -9,6 +9,9 @@
     - name: spotify_password
       prompt: "spotify password"
       private: yes
+    - name: soundcloud_auth_token
+      prompt: "souncloud auth token"
+      private: yes
   roles:
     - common
     - lights

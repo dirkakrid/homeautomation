@@ -4,4 +4,4 @@
 - name: mopidy
   shell: supervisorctl update
 - name: mopidy
-  supervisorctl: name=mopidy state=started
+  supervisorctl: name=mopidy state=restarted
