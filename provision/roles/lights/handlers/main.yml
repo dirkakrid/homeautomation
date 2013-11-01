@@ -1,3 +1,7 @@
 ---
 - name: lirc
   service: name=lirc state=restarted
+- name: lights
+  shell: supervisorcrl update
+- name: lights
+  supervisorctl: name=lights state=started config=/etc/supervisor/supervisord.conf

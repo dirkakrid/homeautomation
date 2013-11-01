@@ -3,5 +3,6 @@
 - with_items:
     - python-dev
     - python-pip
+    - git
   apt: name=$item
 - pip: name=pip state=latest

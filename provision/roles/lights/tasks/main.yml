@@ -5,11 +5,18 @@
   with_items:
     - lirc
     - supervisor
+    - python-lirc
   apt: name=$item
+- git: repo=https://github.com/wuub/homeautomation.git dest=/home/pi/homeautomation
 - name: modifi kernel modules
   lineinfile: dest=/etc/modules regexp=^lirc_dev line=lirc_dev
   notify: lirc
+- lineinfile: dest=/etc/lirc/lircmd.conf state=absent regexp="UNCONFIGURED"
 - name: modifi kernel modules
   lineinfile: dest=/etc/modules regexp=^lirc_rpi line="lirc_rpi gpio_in_pin=23"
 - template: src=lircd.conf.j2 dest=/etc/lirc/lircd.conf
   notify: lirc
+- template: src=hardware.conf.j2 dest=/etc/lirc/hardware.conf
+  notify: lirc
+- template: src=lights.conf.j2 dest=/etc/supervisor/conf.d/lights.conf
+  notify: lights

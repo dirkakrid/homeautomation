@@ -1,1 +1,0 @@
-python-lirc==1.2.0
