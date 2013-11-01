@@ -26,12 +26,12 @@ def click(no):
         time.sleep(0.2)
 
 
-@app.route("KEY_1", remote="lights")
+@app.route("KEY_VOLUMEUP", remote="lights")
 def key_1():
     click(18)
 
 
-@app.route("KEY_2", remote="lights")
+@app.route("KEY_VOLUMEDOWN", remote="lights")
 def key_2():
     click(22)
 
