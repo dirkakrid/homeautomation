@@ -21,6 +21,7 @@
      - Mopidy-Spotify
      - Mopidy-SoundCloud
    pip: name=$item
+ - pip: name=/home/pi/homeautomation/mopidy-rxv
  - template: src=mopidy.conf.supervisor.j2 dest=/etc/supervisor/conf.d/mopidy.conf
    notify: mopidy
 
