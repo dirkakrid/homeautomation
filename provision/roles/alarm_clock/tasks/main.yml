@@ -1,0 +1,30 @@
+---
+- pip: name=python-mpd2
+- name: Adding alarms
+  with_items:
+    - day: 1
+      hour: "{{ weekdays.hour }}"
+      minute: "{{ weekdays.minute }}"
+    - day: 2
+      hour: "{{ weekdays.hour }}"
+      minute: "{{ weekdays.minute }}"
+    - day: 3
+      hour: "{{ weekdays.hour }}"
+      minute: "{{ weekdays.minute }}"
+    - day: 4
+      hour: "{{ weekdays.hour }}"
+      minute: "{{ weekdays.minute }}"
+    - day: 5
+      hour: "{{ weekdays.hour }}"
+      minute: "{{ weekdays.minute }}"
+    - day: 6
+      hour: "{{ saturday['hour'] }}"
+      minute: "{{ saturday['minute'] }}"
+    - day: 7
+      hour: "{{ sunday['hour'] }}"
+      minute: "{{ sunday['minute'] }}"
+  cron: name="alarm_clock weekday {{ item.day }}"
+        weekday="{{ item.day }}"
+        hour="{{ item.hour }}"
+        minute="{{ item.minute }}"
+        job="/home/pi/homeautomation/alarm_clock/alarm_clock.py --playlist=\"{{ playlist }}\" --sleep=\"{{ sleep }}\""
