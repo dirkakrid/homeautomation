@@ -11,6 +11,7 @@
    apt: name=$item
  - template: src=asound.conf.j2 dest=/etc/asound.conf
  - git: repo=https://github.com/woutervanwijk/Mopidy-Webclient.git dest=/home/pi/Mopidy-Webclient
+ - git: repo=https://github.com/dz0ny/mopidy-lux.git dest=/home/pi/mopidy-lux
    sudo: False
  - file: dest=/home/pi/.config/mopidy/ state=directory owner=pi group=pi
  - template: src=mopidy.conf.j2 dest=/home/pi/.config/mopidy/mopidy.conf
