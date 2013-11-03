@@ -9,7 +9,7 @@ from mpd import MPDClient
 from mopidy_rxv import rxv473
 
 START_VOLUME = -80
-MID_VOLUME = -45
+MID_VOLUME = -48
 TARGET_VOLUME = -38
 
 
@@ -35,7 +35,7 @@ def main():
     cli.load(args.playlist)
     cli.play()
 
-    for vol in range(-80, MID_VOLUME, 1):
+    for vol in range(START_VOLUME, MID_VOLUME, 1):
         r.volume = vol
         time.sleep(0.5)
 
@@ -44,7 +44,7 @@ def main():
 
     for vol in range(MID_VOLUME, TARGET_VOLUME, 1):
         r.volume = vol
-        time.sleep(0.5)
+        time.sleep(2)
 
     time.sleep(60)
     requests.get("http://dom.wuub.net/api/lights/large/on")
