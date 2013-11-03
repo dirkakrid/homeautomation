@@ -22,6 +22,9 @@ atexit.register(GPIO.cleanup)
 from flask import Flask, jsonify
 app = Flask(__name__)
 
+from mopidy_rxv import rxv473
+rxv = rxv473.RXV473("192.168.1.116")
+
 def click(no):
     for _ in range(2):
         GPIO.output(no, 0)
@@ -51,5 +54,10 @@ def lights_switch(name, state):
     LIGHTS[name]['state'] = state
     return jsonify(LIGHTS[name])
 
+@app.route("/api/stereo")
+def stereo_status():
+    return jsonify(rxv.basic_status._asdict())
+
 if __name__ == '__main__':
+    app.debug = True
     app.run(host="0.0.0.0", port=80)
