@@ -3,9 +3,15 @@
 from __future__ import with_statement, division, absolute_import, print_function
 
 import time
+import requests
 import argparse
 from mpd import MPDClient
 from mopidy_rxv import rxv473
+
+START_VOLUME = -80
+MID_VOLUME = -45
+TARGET_VOLUME = -38
+
 
 def main():
     parser = argparse.ArgumentParser(description='wake up with music')
@@ -21,7 +27,7 @@ def main():
     time.sleep(0.5)
     r.sleep = args.sleep
     r.input = "HDMI4"
-    r.volume = -80
+    r.volume = START_VOLUME
 
     cli = MPDClient()
     cli.connect("dom.wuub.net", 6600)
@@ -29,9 +35,20 @@ def main():
     cli.load(args.playlist)
     cli.play()
 
-    for vol in range(-80, -35, 1):
+    for vol in range(-80, MID_VOLUME, 1):
         r.volume = vol
         time.sleep(0.5)
+
+    time.sleep(30)
+    requests.get("http://dom.wuub.net/api/lights/small/on")
+
+    for vol in range(MID_VOLUME, TARGET_VOLUME, 1):
+        r.volume = vol
+        time.sleep(0.5)
+
+    time.sleep(60)
+    requests.get("http://dom.wuub.net/api/lights/large/on")
+
 
 
 if __name__ == '__main__':
