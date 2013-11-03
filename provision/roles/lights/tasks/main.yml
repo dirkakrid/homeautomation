@@ -7,6 +7,7 @@
     - supervisor
     - python-lirc
   apt: name=$item
+- pip: name=requests state=latest
 - git: repo=https://github.com/wuub/homeautomation.git dest=/home/pi/homeautomation
 - name: modifi kernel modules
   lineinfile: dest=/etc/modules regexp=^lirc_dev line=lirc_dev
