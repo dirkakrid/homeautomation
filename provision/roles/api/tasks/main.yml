@@ -1,0 +1,5 @@
+---
+- pip: name=flask state=latest
+- template: src=api.conf.j2 dest=/etc/supervisor/conf.d/api.conf
+- shell: supervisorctl update
+- supervisorctl: name=api state=started
