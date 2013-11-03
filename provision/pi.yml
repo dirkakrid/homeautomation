@@ -15,6 +15,6 @@
   roles:
     - common
     - lights
+    - api
     - mopidy
     - alarm_clock
-    - api
