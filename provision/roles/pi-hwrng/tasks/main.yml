@@ -1,0 +1,5 @@
+---
+- lineinfile: dest=/etc/modules regexp="bcm2708-rng" line="bcm2708-rng"
+  notify: module
+- apt: name=rng-tools
+- service: name="rng-tools" state=started

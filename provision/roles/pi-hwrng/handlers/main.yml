@@ -1,0 +1,3 @@
+---
+- name: module
+  shell: modprobe bcm2708-rng
