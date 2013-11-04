@@ -59,5 +59,4 @@ def stereo_status():
     return jsonify(rxv.basic_status._asdict())
 
 if __name__ == '__main__':
-    app.debug = True
     app.run(host="0.0.0.0", port=80)
