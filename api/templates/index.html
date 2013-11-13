@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  </head>
+  <body>
+
+    <div class="container">
+    <h1>Lights</h1>
+        <h2>Small</h2>
+        <a class="btn btn-lg btn-success" id="small-on" href="#" role="button">On</a>
+        <a class="btn btn-lg btn-danger" id="small-off" href="#" role="button">Off</a>
+        <h2>Large</h2>
+        <a class="btn btn-lg btn-success" id="large-on" href="#" role="button">On</a>
+        <a class="btn btn-lg btn-danger" id="large-off" href="#" role="button">Off</a>
+
+      </div>
+
+    </div> <!-- /container -->
+
+
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $("#small-on").click(function() {
+            console.log("on")
+            $.ajax("http://dom.wuub.net/api/lights/small/on")
+        })
+        $("#small-off").click(function() {
+            console.log("off")
+            $.ajax("http://dom.wuub.net/api/lights/small/off")
+        })
+
+        $("#large-on").click(function() {
+            console.log("on")
+            $.ajax("http://dom.wuub.net/api/lights/large/on")
+        })
+        $("#large-off").click(function() {
+            console.log("off")
+            $.ajax("http://dom.wuub.net/api/lights/large/off")
+        })
+    </script>
+
+  </body>
+</html>

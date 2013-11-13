@@ -19,7 +19,7 @@ GPIO.setup(SMALL_ON, GPIO.OUT, initial=GPIO.HIGH)
 GPIO.setup(SMALL_OFF, GPIO.OUT, initial=GPIO.HIGH)
 atexit.register(GPIO.cleanup)
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 app = Flask(__name__)
 
 from mopidy_rxv import rxv473
@@ -39,6 +39,10 @@ LIGHTS = {
     'large': {'on': LARGE_ON, 'off': LARGE_OFF, 'state': 'unknown'},
     'small': {'on': SMALL_ON, 'off': SMALL_OFF, 'state': 'unknown'},
 }
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 @app.route("/api/lights")
 def lights_all():
