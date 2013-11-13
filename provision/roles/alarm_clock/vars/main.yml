@@ -3,7 +3,7 @@ playlist: "Alarm Clock"
 sleep: "60 min"
 weekdays:
   hour: 7
-  minute: 30
+  minute: 00
 saturday:
   hour: 8
   minute: 0
