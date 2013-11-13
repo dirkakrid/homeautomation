@@ -1,5 +1,6 @@
 ---
 - pip: name=python-mpd2
+- file: name=/home/pi/homeautomation/alarm_clock/alarm_clock.py mode=755
 - name: Adding alarms
   with_items:
     - day: 1
