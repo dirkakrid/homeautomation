@@ -7,12 +7,16 @@ import time
 import atexit
 import RPi.GPIO as GPIO
 
+from rfsocket import RFSocket
+
 SMALL_ON = 18
 SMALL_OFF = 22
 LARGE_ON = 11
 LARGE_OFF = 15
+RF_PIN = 7
 
 GPIO.setmode(GPIO.BOARD)
+GPIO.setup(RF_PIN, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(LARGE_ON, GPIO.OUT, initial=GPIO.HIGH)
 GPIO.setup(LARGE_OFF, GPIO.OUT, initial=GPIO.HIGH)
 GPIO.setup(SMALL_ON, GPIO.OUT, initial=GPIO.HIGH)
@@ -39,6 +43,20 @@ LIGHTS = {
     'large': {'on': LARGE_ON, 'off': LARGE_OFF, 'state': 'unknown'},
     'small': {'on': SMALL_ON, 'off': SMALL_OFF, 'state': 'unknown'},
 }
+
+
+
+@app.route("/rfsocket/<group>/<key>/on")
+def rfsocket_on(group, key):
+    rfsocket = RFSocket(RF_PIN, str(group))
+    rfsocket.on(key.upper())
+    return jsonify({})
+
+@app.route("/rfsocket/<group>/<key>/off")
+def rfsocket_off(group, key):
+    rfsocket = RFSocket(RF_PIN, "pokoj")
+    rfsocket.off(key.upper())
+    return jsonify({})
 
 @app.route("/")
 def index():
