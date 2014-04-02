@@ -1,1 +1,1 @@
-pimpd
+pimpd  ansible_ssh_user=pi
