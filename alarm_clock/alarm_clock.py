@@ -6,7 +6,7 @@ import time
 import requests
 import argparse
 from mpd import MPDClient
-from mopidy_rxv import rxv473
+import rxv
 
 START_VOLUME = -80
 MID_VOLUME = -48
@@ -22,7 +22,7 @@ def main():
     args = parser.parse_args()
 
 
-    r = rxv473.RXV473("192.168.1.116")
+    r = rxv.RXV("192.168.1.116")
     r.on = True
     time.sleep(0.5)
     r.sleep = args.sleep
