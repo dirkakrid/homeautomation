@@ -1,6 +1,5 @@
 ---
 - with_items:
-    - redis-server
     - uwsgi
   apt: name={{ item }}
 - pip: name=flask state=latest
