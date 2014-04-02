@@ -10,7 +10,7 @@ import pygst
 pygst.require('0.10')
 import gobject
 import gst
-from .rxv473 import RXV473
+import rxv
 
 logger = logging.getLogger('mopidy_rxv')
 
@@ -90,7 +90,7 @@ class RXVMixer(gst.Element, gst.ImplementsInterface, gst.interfaces.Mixer):
     def do_change_state(self, transition):
         if transition == gst.STATE_CHANGE_NULL_TO_READY:
             logger.info("rxv")
-            self._client = RXV473(self.ip)
+            self._client = rxv.RXV(self.ip)
                 #return gst.STATE_CHANGE_FAILURE
         return gst.STATE_CHANGE_SUCCESS
 

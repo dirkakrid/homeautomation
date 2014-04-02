@@ -10,18 +10,14 @@
      - libspotify-dev
    apt: name=$item
  - template: src=asound.conf.j2 dest=/etc/asound.conf
- - git: repo=https://github.com/woutervanwijk/Mopidy-Webclient.git dest=/home/pi/Mopidy-Webclient
- - git: repo=https://github.com/dz0ny/mopidy-lux.git dest=/home/pi/mopidy-lux
-   sudo: False
  - file: dest=/home/pi/.config/mopidy/ state=directory owner=pi group=pi
  - template: src=mopidy.conf.j2 dest=/home/pi/.config/mopidy/mopidy.conf
    sudo: False
  - with_items:
-     - pyspotify
-     - Mopidy-Spotify
-     - Mopidy-SoundCloud
-   pip: name=$item
- - pip: name=/home/pi/homeautomation/mopidy-rxv
+     - mopidy
+     - mopidy-spotify
+     - mopidy-soundcloud
+   apt: name=$item
  - template: src=mopidy.conf.supervisor.j2 dest=/etc/supervisor/conf.d/mopidy.conf
    notify: mopidy
 
