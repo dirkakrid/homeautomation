@@ -1,3 +1,0 @@
----
-- name: timezone
-  shell: dpkg-reconfigure -f noninteractive tzdata

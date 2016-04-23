@@ -1,7 +1,0 @@
----
- - get_url: 'url=http://download.redis.io/releases/redis-2.8.8.tar.gz dest=/tmp/redis.tar.gz'
- - unarchive: src=/tmp/redis.tar.gz copy=no dest=/tmp/
- - shell: make chdir=/tmp/redis-2.8.8/
- - shell: make install chdir=/tmp/redis-2.8.8/
- - template: src=redis.conf.supervisor.j2 dest=/etc/supervisor/conf.d/redis.conf
-   notify: redis
