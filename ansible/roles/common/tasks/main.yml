@@ -10,3 +10,5 @@
     - git
     - mercurial
     - git-gui
+    - powertop
+    - lm-sensors
