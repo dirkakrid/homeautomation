@@ -1,0 +1,18 @@
+- name: unifi-controller data container
+  docker:
+    name: unifi-controller-data
+    image: busybox
+    state: present
+    volumes:
+    - /usr/lib/unifi/data
+
+- name: unifi-controller container
+  docker:
+    name: unifi-controller
+    image: wuub/docker-unifi-controller
+    pull: always
+    restart_policy: always
+    state: started
+    net: host
+    volumes_from:
+      - unifi-controller-data

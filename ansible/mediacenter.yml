@@ -6,3 +6,5 @@
     - {name: install google chrome, role: chrome}
     - {name: install base lxde_tools, role: lxde_tools}
     - {name: install Kodi, role: kodi}
+    - {name: install Docker, role: docker}
+    - {name: install unifi controller, role: unifi_controller}
