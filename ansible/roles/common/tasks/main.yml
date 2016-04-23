@@ -1,0 +1,12 @@
+- name: install basic packages
+  apt: name={{item}}
+  become: yes
+  with_items:
+    - vim
+    - zsh
+    - software-properties-common
+    - curl
+    - httpie
+    - git
+    - mercurial
+    - git-gui

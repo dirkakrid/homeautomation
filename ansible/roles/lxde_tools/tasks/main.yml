@@ -1,0 +1,4 @@
+- name: install synapse
+  apt: name=synapse update_cache=yes cache_valid_time=60
+- name: install guake
+  apt: name=guake

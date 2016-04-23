@@ -1,0 +1,8 @@
+---
+- hosts: mediacenters
+  become: yes
+  roles:
+    - {name: install common requirements, role: common}
+    - {name: install google chrome, role: chrome}
+    - {name: install base lxde_tools, role: lxde_tools}
+    - {name: install Kodi, role: kodi}
