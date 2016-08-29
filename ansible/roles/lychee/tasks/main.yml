@@ -4,7 +4,7 @@
 - name: lychee container
   docker:
     name: lychee
-    image: kdelfour/lychee-docker
+    image: wuub/lychee-docker
     pull: always
     restart_policy: always
     state: started
