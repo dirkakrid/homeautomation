@@ -1,0 +1,16 @@
+- name: make directory for lychee
+  file: path=/media/kosteczkabox/lychee state=directory mode=0777
+
+- name: lychee container
+  docker:
+    name: lychee
+    image: kdelfour/lychee-docker
+    pull: always
+    restart_policy: always
+    state: started
+    ports:
+        - 80:80
+    volumes:
+        - /media/kosteczkabox/lychee/uploads:/uploads
+        - /media/kosteczkabox/lychee/data:/data
+        - /media/kosteczkabox/lychee/mysql:/mysql
