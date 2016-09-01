@@ -1,0 +1,6 @@
+---
+- hosts: homeassistant
+  become: yes
+  roles:
+    - {role: mosquitto}
+    - {role: homeassistant}

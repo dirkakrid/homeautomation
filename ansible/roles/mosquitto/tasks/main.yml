@@ -1,0 +1,4 @@
+- name: install mosquitto
+  apt: name=mosquitto update_cache=yes cache_valid_time=60
+- name: install mosquitto clients
+  apt: name=mosquitto-clients update_cache=yes cache_valid_time=60
