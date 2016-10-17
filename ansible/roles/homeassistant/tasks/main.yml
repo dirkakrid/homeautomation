@@ -3,7 +3,7 @@
   pip: name=pip executable=pip3 state=latest
 
 - name: install homeassistant
-  pip: name=homeassistant executable=pip3
+  pip: name=homeassistant executable=pip3 state=latest
 
 - name: create an user
   user: name="homeassistant"

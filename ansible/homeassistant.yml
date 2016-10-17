@@ -3,4 +3,4 @@
   become: yes
   roles:
     - {role: mosquitto}
-    - {role: homeassistant}
+    - {role: homeassistant, tags: homeassistant}

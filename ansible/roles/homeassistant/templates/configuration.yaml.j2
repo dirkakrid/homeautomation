@@ -22,7 +22,7 @@ http:
 updater:
 
 # Discover some devices automatically
-discovery:
+{# discovery: #}
 
 # Enables support for tracking state changes over time.
 history:
@@ -38,7 +38,7 @@ mqtt:
   port: 1883
 
 
-switch:
+light:
   - platform: mqtt
     name: "RED 1"
     state_topic: "home/rfsocket/57563880/1"
@@ -59,3 +59,117 @@ switch:
     command_topic: "home/rfsocket/set"
     payload_on: "switch_on 57563880 3"
     payload_off: "switch_off 57563880 3"
+
+
+media_player:
+  - platform: yamaha
+    name: Yamaha
+  - platform: squeezebox
+    host: kosteczka.local
+
+device_tracker:
+  - platform: unifi
+    username: admin
+
+sensor:
+  platform: speedtest
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+emulated_hue:
+  host_ip: 192.168.1.46
+  listen_port: 8300
+  off_maps_to_on_domains:
+    - script
+    - scene
+  expose_by_default: true
+  exposed_domains:
+    - switch
+
+group:
+  default_view:
+    view: yes
+    entities:
+      - device_tracker.lis
+      - device_tracker.wojtekop2
+      - device_tracker.thinkbookwifi
+      - device_tracker.asiaxps
+      - device_tracker.lisipad
+  kuchnia:
+    name: Kuchnia
+    view: yes
+    entities:
+      - media_player.kuchnia
+  sypialnia:
+    name: Sypialnia
+    view: yes
+    entities:
+      - media_player.sypialnia
+      - light.red_1
+
+  osobiste:
+    name: Urzadzenia osobiste
+    entities:
+      - device_tracker.thinkbookwifi
+      - device_tracker.asiaxps
+      - device_tracker.lis
+      - device_tracker.wojtekop2
+
+  pokoj:
+    name: Pokój
+    view: yes
+    entities:
+      - media_player.kosteczka
+      - media_player.yamaha
+      - light.red_2
+      - light.red_3
+
+  speedtest:
+    view: no
+    entities:
+      - sensor.speedtest_download
+      - sensor.speedtest_ping 
+      - sensor.speedtest_upload
+
+  stats:
+    name: Stats
+    view: yes
+    entities:
+      - group.speedtest
+
+
+notify:
+  - name: slack
+    platform: slack
+    default_channel: '#general'
+
+
+{% raw %}
+automation:
+  alias: Slack Notifications
+  trigger:
+    platform: state
+    entity_id: device_tracker.lis, device_tracker.wojtekop2
+  action:
+    service: notify.slack
+    data_template:
+      message: >
+        {{ trigger.entity_id.split('.')[1] }} just changed from {{ trigger.from_state.state }}
+        to {{ trigger.to_state.state }}
+
+
+automation 2:
+  alias: Turn off lights when everyone leaves
+  trigger:
+    platform: state
+    entity_id: group.osobiste
+    state: 'not_home'
+  action:
+    service: light.turn_off
+    entity_id: group.all_lights
+
+{% endraw %}
+
+
